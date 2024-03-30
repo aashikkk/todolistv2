@@ -8,6 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 const port = process.env.PORT || 3000;
 const _ = require("lodash");
+require("dotenv").config();
 
 const { Schema, model } = mongoose;
 
@@ -19,9 +20,7 @@ main().catch((err) => {
 
 async function main() {
     // await mongoose.connect("mongodb://127.0.0.1:27017/todolistDB");
-    await mongoose.connect(
-        "mongodb+srv://admin-aashik:test123456@cluster0.rghqb6x.mongodb.net/todolistDB"
-    );
+    await mongoose.connect(process.env.MONGO_CONNECTION_URL);
 
     mongoose.connection.on("error", (error) => {
         console.error("MongoDB connection error:", error);
