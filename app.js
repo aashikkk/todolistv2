@@ -6,6 +6,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+const port = process.env.PORT || 3000;
 const _ = require("lodash");
 
 const { Schema, model } = mongoose;
@@ -140,6 +141,6 @@ app.get("/about", (req, res) => {
     res.render("about");
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log(`Your server is running on port 3000`);
 });
